@@ -33,8 +33,7 @@
 ```
 
 ## Формат CDR-записей
-
-Каждая CDR-запись содержит следующие поля:
+Каждая CDR-запись (строка в файле JSONL) содержит следующие поля:
 
 - `callType`: тип вызова (01 - исходящий, 02 - входящий)
 - `firstSubscriberMsisdn`: номер первого абонента (формат: 79XXXXXXXXX)
@@ -43,7 +42,7 @@
 - `callEnd`: время окончания вызова (ISO формат: YYYY-MM-DDThh:mm:ss)
 
 ## Типы генерируемых CDR
-
+Файлы генерируются в формате JSON Lines (каждая строка – это отдельный JSON-объект).
 1. **Корректные CDR** (`generated_cdrs_correct.jsonl`)
    - Все поля соответствуют требуемому формату
    - Звонки разделяются на два, если они переходят через полночь
@@ -75,10 +74,19 @@
 
 ### Корректная запись
 ```json
-{"callType": "01", "firstSubscriberMsisdn": "79123456789", "secondSubscriberMsisdn": "79876543210", "callStart": "2025-01-01T10:15:30", "callEnd": "2025-01-01T10:25:45"}
+{"callType": "02", "firstSubscriberMsisdn": "79156459857", "secondSubscriberMsisdn": "79259669925", "callStart": "2025-01-01T01:00:37", "callEnd": "2025-01-01T03:32:42"}
+{"callType": "02", "firstSubscriberMsisdn": "79870041325", "secondSubscriberMsisdn": "79392139613", "callStart": "2025-01-01T01:15:54", "callEnd": "2025-01-01T04:15:30"}
+{"callType": "02", "firstSubscriberMsisdn": "79898914719", "secondSubscriberMsisdn": "79484299125", "callStart": "2025-01-01T01:49:02", "callEnd": "2025-01-01T05:24:53"}
+{"callType": "02", "firstSubscriberMsisdn": "79846676374", "secondSubscriberMsisdn": "79555366291", "callStart": "2025-01-01T03:25:40", "callEnd": "2025-01-01T05:09:27"}
+{"callType": "01", "firstSubscriberMsisdn": "79898914719", "secondSubscriberMsisdn": "79937969637", "callStart": "2025-01-01T04:06:36", "callEnd": "2025-01-01T04:32:28"}
+{"callType": "01", "firstSubscriberMsisdn": "79399910312", "secondSubscriberMsisdn": "79287263507", "callStart": "2025-01-01T04:59:07", "callEnd": "2025-01-01T07:42:35"}
 ```
 
 ### Запись с ошибкой (неверная дата)
 ```json
-{"callType": "02", "firstSubscriberMsisdn": "79123456789", "secondSubscriberMsisdn": "79876543210", "callStart": "2025-01-01T10:15:30", "callEnd": "j8a$dK!2#@pL"}
+{"callType": "01", "firstSubscriberMsisdn": "79402762325", "secondSubscriberMsisdn": "79401217893", "callStart": "={Pw(w7d'Y^M#+[`t2nW<*", "callEnd": "?qv'~F/:fSc!S9FwA/1`:m|Mq3M;;"}
+{"callType": "02", "firstSubscriberMsisdn": "79189232791", "secondSubscriberMsisdn": "79581916256", "callStart": "2025-01-01T02:18:10", "callEnd": ".Q`#d|Lve/IbRxRNFr.r1Nxq$"}
+{"callType": "02", "firstSubscriberMsisdn": "79870041325", "secondSubscriberMsisdn": "79616332430", "callStart": "1WT4L6.@7STarcX=", "callEnd": "}F|5;+F|A^JMKnD3SF"}
+{"callType": "01", "firstSubscriberMsisdn": "79667904941", "secondSubscriberMsisdn": "79642008229", "callStart": "]EjEc{[d&0sHy~E0m8|#4;RPIa2+", "callEnd": "/4/1u.hWwiLX]m5"}
+{"callType": "02", "firstSubscriberMsisdn": "79484299125", "secondSubscriberMsisdn": "79189232791", "callStart": "#~BGF''E:gBd(,z", "callEnd": "-2Fe)>I_Pps/VC"}
 ```
